@@ -6,15 +6,12 @@ using System.Threading.Tasks;
 
 namespace RockPaperScissorsLizardSpock
 {
-    class RPSLS
+    class Gestures
     {
-        //Member Variables(Has A)
-        public List<RPSLS> options;
-
-        //Constructor(Is A)
-
-
-        //Methods(Can Do)
-
+        string name = null;
+        public Gestures(string gestureName)
+        {
+            gestureName = null;
+        }
     }
 }
