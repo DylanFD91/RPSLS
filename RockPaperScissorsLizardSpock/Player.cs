@@ -11,15 +11,19 @@ namespace RockPaperScissorsLizardSpock
         //Member Variables(Has A)
         public string name;
         public int score;
+        public string gesture;
 
         //Constructor(Is A)
         public Player()
         {
-
+            EnterName();
+            score = 0;
+            gesture = "";
         }
 
         //Methods(Can Do)
         public abstract void EnterName();
+        public abstract void PlayerGestureChoice();
 
     }
 }

@@ -12,13 +12,17 @@ namespace RockPaperScissorsLizardSpock
         //Constructor(Is A)
         public AI()
         {
-            EnterName();
-            this.score = 0;
+
         }
         //Methods(Can Do)
         public override void EnterName()
         {
             Console.WriteLine("Sheldor");
+            this.name = "Sheldor";
+        }
+        public override void PlayerGestureChoice()
+        {
+            int aIChoice = new Random().Next(1, 5);
         }
     }
 }

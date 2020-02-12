@@ -9,8 +9,9 @@ namespace RockPaperScissorsLizardSpock
     class PlayGame
     {
         //Member Variables(Has A)
-        public bool playerOneTurn = false;
-        public bool twoHumans = false;
+        public List<string> gesturesList = new List<string>() { ("Rock"), ("Paper"), ("Scissors"), ("Lizard"), ("Spock") };
+        Player player1;
+        Player player2;
 
         //Constructor(Is A)
         public PlayGame()
@@ -19,90 +20,129 @@ namespace RockPaperScissorsLizardSpock
         }
 
         //Methods(Can Do)
+        private void DisplayRules()
+        {
+            Console.WriteLine("Here is the list of what beats what in this game: ");
 
-        //checks if one or two players
-        public void OneorTwoPlayers()
+            Console.WriteLine("\nRock crushes Scissors");
+            Console.WriteLine("Scissors cuts Paper");
+            Console.WriteLine("Paper covers Rock");
+            Console.WriteLine("Rock crushes Lizard");
+            Console.WriteLine("Lizard poisons Spock");
+            Console.WriteLine("Spock smashes Scissors");
+            Console.WriteLine("Scissors decapitates Lizard");
+            Console.WriteLine("Lizard eats Paper");
+            Console.WriteLine("Paper disproves Spock");
+            Console.WriteLine("Spock vaporizes Rock\n");
+
+            Console.WriteLine("Press Enter to continue...");
+
+            Console.ReadLine();
+        }
+
+        private void OneorTwoPlayers()
         {
             Console.WriteLine("One or Two Players?(Please Type 1 or 2)");
             string input = Console.ReadLine();
             switch (input)
             {
+                case "0":
+                    player1 = new AI();
+                    player2 = new AI();
+                    break;
                 case "1":
-                    new Human();
-                    new AI();
+                    player1 = new Human();
+                    player2 = new AI();
                     break;
                 case "2":
-                    new Human();
-                    new Human();
-                    twoHumans = true;
+                    player1 = new Human();
+                    player2 = new Human();
                     break;
                 default:
+                    Console.Clear();
                     Console.WriteLine("That was not a valid response, please try again.");
                     OneorTwoPlayers();
                     break;
             }
         }
 
-
-        //allows user input
-        public void HumanChoose()
+        private void DisplayWinnerOfGame()
         {
-            Console.WriteLine("Please choose from the list: ");
-            Console.WriteLine("Rock");
-            Console.WriteLine("Paper");
-            Console.WriteLine("Scissors");
-            Console.WriteLine("Lizard");
-            Console.WriteLine("Spock");
-            string input = Console.ReadLine();
-            switch (input)
+            if (player1.score == 2)
             {
-                case "Rock":
-                case "rock":
-                    break;
-                case "Paper":
-                case "paper":
-                    break;
-                case "Scissors":
-                case "scissors":
-                    break;
-                case "Lizard":
-                case "lizard":
-                    break;
-                case "Spock":
-                case "spock":
-                    break;
-                default:
-                    Console.WriteLine("That was not a valid response please try again");
-                    HumanChoose();
-                    break;
+                Console.WriteLine(player1.name + " you win the game!");
+                Console.ReadLine();
+            }
+            else if(player2.score == 2)
+            {
+                Console.WriteLine(player2.name + " you win the game!");
+                Console.ReadLine();
             }
         }
-        public void AIChoose()
-        {
 
+        private void DisplayGestureOptions()
+        {
+            Console.WriteLine("Please choose from the list: \n");
+            foreach(string gesture in gesturesList)
+            {
+                Console.WriteLine(gesture);
+            }
+            Console.WriteLine("\n");
         }
 
-
-        //actually operates the turn
-        public void PlayerTurn()
+        private void PickGestures()
         {
+            DisplayGestureOptions();
+            player1.PlayerGestureChoice();
 
+            Console.Clear();
 
-            //if (playerOneTurn == true)
-            //{
-
-            //    playerOneTurn = false;
-            //}
-            //else
-            //{
-
-            //    playerOneTurn = true;
-            //}
+            DisplayGestureOptions();
+            player2.PlayerGestureChoice();
+            CompareGestures();
         }
 
+        public void CompareGestures()
+        {
+            if (player1.gesture == player2.gesture)
+            {
+                Console.WriteLine("It's a tie lets go again.");
+                player1.score++;
+            }
+            else if (player1.gesture == "Rock" && player2.gesture == "Scissors" || player2.gesture == "Lizard")
+            {
+                Console.WriteLine(player1.name + "wins this round");
+                player1.score++;
+            }
+            else if (player1.gesture == "Scissors" && player2.gesture == "Paper" || player2.gesture == "Lizard")
+            {
+                Console.WriteLine(player1.name + "wins this round");
+                player1.score++;
+            }
+            else if (player1.gesture == "Paper" && player2.gesture == "Rock" || player2.gesture == "Spock")
+            {
+                Console.WriteLine(player1.name + "wins this round");
+                player1.score++;
+            }
+            else if (player1.gesture == "Lizard" && player2.gesture == "Spock" || player2.gesture == "Paper")
+            {
+                Console.WriteLine(player1.name + "wins this round");
+                player1.score++;
+            }
+            else if (player1.gesture == "Spock" && player2.gesture == "Rock" || player2.gesture == "Scissors")
+            {
+                Console.WriteLine(player1.name + " wins this round!");
+                player1.score++;
+            }
+            else
+            {
+                Console.WriteLine(player2.name + " wins this round!");
+                player2.score++;
+            }
+            Console.ReadLine();
+        }
 
-        //play again and run program
-        public void PlayAgain()
+        private void PlayAgain()
         {
             Console.WriteLine("\nWould you like to play again?(Type Y/N): ");
             string playAgain = Console.ReadLine();
@@ -128,11 +168,12 @@ namespace RockPaperScissorsLizardSpock
         }
         public void SimulateProgram()
         {
+            DisplayRules();
             OneorTwoPlayers();
 
+            PickGestures();
 
-
-
+            DisplayWinnerOfGame();
             PlayAgain();
         }
 
