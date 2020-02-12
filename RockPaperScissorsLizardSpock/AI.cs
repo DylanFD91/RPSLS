@@ -9,6 +9,7 @@ namespace RockPaperScissorsLizardSpock
     public class AI : Player
     {
         //Member Variables(Has A)
+
         //Constructor(Is A)
         public AI()
         {
@@ -17,12 +18,24 @@ namespace RockPaperScissorsLizardSpock
         //Methods(Can Do)
         public override void EnterName()
         {
-            Console.WriteLine("Sheldor");
+            Console.WriteLine("\n-----------------------");
+            Console.WriteLine("Please enter your name: ");
+            Console.WriteLine("-----------------------\n");
+
             this.name = "Sheldor";
+            System.Threading.Thread.Sleep(500);
+            foreach (char sheldon in this.name)
+            {
+                System.Threading.Thread.Sleep(200);
+                Console.Write(sheldon);
+            }
+            Console.WriteLine("\n");
         }
         public override void PlayerGestureChoice()
         {
-            int aIChoice = new Random().Next();
+            Random rng = new Random();
+            int index = rng.Next(gesturesList.Count);
+            gesture = index.ToString();
         }
     }
 }

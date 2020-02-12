@@ -17,7 +17,9 @@ namespace RockPaperScissorsLizardSpock
         //Methods(Can Do)
         public override void EnterName()
         {
-            Console.WriteLine("Please enter your name.");
+            Console.WriteLine("\n-----------------------");
+            Console.WriteLine("Please enter your name: " );
+            Console.WriteLine("-----------------------\n");
             string input = Console.ReadLine();
             this.name = input;
         }

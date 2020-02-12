@@ -9,6 +9,7 @@ namespace RockPaperScissorsLizardSpock
     public abstract class Player
     {
         //Member Variables(Has A)
+        public List<string> gesturesList = new List<string>() { ("Rock"), ("Paper"), ("Scissors"), ("Lizard"), ("Spock") };
         public string name;
         public int score;
         public string gesture;

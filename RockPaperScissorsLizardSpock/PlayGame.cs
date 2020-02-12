@@ -9,7 +9,7 @@ namespace RockPaperScissorsLizardSpock
     class PlayGame
     {
         //Member Variables(Has A)
-        public List<string> gesturesList = new List<string>() { ("Rock"), ("Paper"), ("Scissors"), ("Lizard"), ("Spock") };
+        
         Player player1;
         Player player2;
 
@@ -22,20 +22,27 @@ namespace RockPaperScissorsLizardSpock
         //Methods(Can Do)
         private void DisplayRules()
         {
-            Console.WriteLine("Here is the list of what beats what in this game: ");
+            Console.WriteLine("--------------------------------------------------------");
+            Console.WriteLine("Welcome to my Rock, Paper, Scissors, Lizard, Spock Game!");
+            Console.WriteLine("--------------------------------------------------------");
+            Console.WriteLine("To sum the game up its your normal R,P,S game with a twist!\n");
 
-            Console.WriteLine("\nRock crushes Scissors");
-            Console.WriteLine("Scissors cuts Paper");
-            Console.WriteLine("Paper covers Rock");
-            Console.WriteLine("Rock crushes Lizard");
-            Console.WriteLine("Lizard poisons Spock");
-            Console.WriteLine("Spock smashes Scissors");
-            Console.WriteLine("Scissors decapitates Lizard");
-            Console.WriteLine("Lizard eats Paper");
-            Console.WriteLine("Paper disproves Spock");
-            Console.WriteLine("Spock vaporizes Rock\n");
+            Console.WriteLine("Below here is the list of what beats what in this game: \n");
 
-            Console.WriteLine("Press Enter to continue...");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("|     Rock crushes Scissors     |");
+            Console.WriteLine("|      Scissors cuts Paper      |");
+            Console.WriteLine("|       Paper covers Rock       |");
+            Console.WriteLine("|      Rock crushes Lizard      |");
+            Console.WriteLine("|      Lizard poisons Spock     |");
+            Console.WriteLine("|     Spock smashes Scissors    |");
+            Console.WriteLine("|  Scissors decapitates Lizard  |");
+            Console.WriteLine("|       Lizard eats Paper       |");
+            Console.WriteLine("|     Paper disproves Spock     |");
+            Console.WriteLine("|     Spock vaporizes Rock      |");
+            Console.WriteLine("---------------------------------");
+
+            Console.WriteLine("\nPress Enter to continue...");
             Console.ReadLine();
             Console.Clear();
         }
@@ -49,19 +56,25 @@ namespace RockPaperScissorsLizardSpock
                 case "0":
                     player1 = new AI();
                     player2 = new AI();
-                    Console.WriteLine("Welcome " + player1.name + " and " + player2.name + "!");
+                    Console.WriteLine("\nWelcome " + player1.name + " and " + player2.name + "! Press Enter to Continue...");
+                    Console.ReadLine();
                     break;
                 case "1":
                     player1 = new Human();
                     player2 = new AI();
+                    Console.WriteLine("\nWelcome " + player1.name + " and " + player2.name + "! Press Enter to Continue...");
+                    Console.ReadLine();
                     break;
                 case "2":
                     player1 = new Human();
                     player2 = new Human();
+                    Console.WriteLine("\nWelcome " + player1.name + " and " + player2.name + "! Press Enter to Continue...");
+                    Console.ReadLine();
                     break;
                 default:
                     Console.Clear();
-                    Console.WriteLine("That was not a valid response, please try again.");
+                    Console.WriteLine("That was not a valid response, please press enter try again.");
+                    Console.ReadLine();
                     OneorTwoPlayers();
                     break;
             }
@@ -85,7 +98,7 @@ namespace RockPaperScissorsLizardSpock
         private void DisplayGestureOptions()
         {
             Console.WriteLine("Please choose from the list: \n");
-            foreach(string gesture in gesturesList)
+            foreach(string gesture in player1.gesturesList)
             {
                 Console.WriteLine(gesture);
             }
