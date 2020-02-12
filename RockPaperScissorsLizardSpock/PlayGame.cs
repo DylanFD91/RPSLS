@@ -36,8 +36,8 @@ namespace RockPaperScissorsLizardSpock
             Console.WriteLine("Spock vaporizes Rock\n");
 
             Console.WriteLine("Press Enter to continue...");
-
             Console.ReadLine();
+            Console.Clear();
         }
 
         private void OneorTwoPlayers()
@@ -49,6 +49,7 @@ namespace RockPaperScissorsLizardSpock
                 case "0":
                     player1 = new AI();
                     player2 = new AI();
+                    Console.WriteLine("Welcome " + player1.name + " and " + player2.name + "!");
                     break;
                 case "1":
                     player1 = new Human();
@@ -64,6 +65,7 @@ namespace RockPaperScissorsLizardSpock
                     OneorTwoPlayers();
                     break;
             }
+            Console.Clear();
         }
 
         private void DisplayWinnerOfGame()
@@ -106,32 +108,31 @@ namespace RockPaperScissorsLizardSpock
         {
             if (player1.gesture == player2.gesture)
             {
-                Console.WriteLine("It's a tie lets go again.");
+                Console.WriteLine("\nIt's a tie lets go again.");
+            }
+            else if (player1.gesture == "Rock" && player2.gesture == "Scissors" || player1.gesture == "Rock" && player2.gesture == "Lizard")
+            {
+                Console.WriteLine("\n" + player1.name + " wins this round!");
                 player1.score++;
             }
-            else if (player1.gesture == "Rock" && player2.gesture == "Scissors" || player2.gesture == "Lizard")
+            else if (player1.gesture == "Scissors" && player2.gesture == "Paper" || player1.gesture == "Scissors" && player2.gesture == "Lizard")
             {
-                Console.WriteLine(player1.name + "wins this round");
+                Console.WriteLine("\n" + player1.name + " wins this round!");
                 player1.score++;
             }
-            else if (player1.gesture == "Scissors" && player2.gesture == "Paper" || player2.gesture == "Lizard")
+            else if (player1.gesture == "Paper" && player2.gesture == "Rock" || player1.gesture == "Paper" && player2.gesture == "Spock")
             {
-                Console.WriteLine(player1.name + "wins this round");
+                Console.WriteLine("\n" + player1.name + " wins this round!");
                 player1.score++;
             }
-            else if (player1.gesture == "Paper" && player2.gesture == "Rock" || player2.gesture == "Spock")
+            else if (player1.gesture == "Lizard" && player2.gesture == "Spock" || player1.gesture == "Lizard" && player2.gesture == "Paper")
             {
-                Console.WriteLine(player1.name + "wins this round");
+                Console.WriteLine("\n" + player1.name + " wins this round!");
                 player1.score++;
             }
-            else if (player1.gesture == "Lizard" && player2.gesture == "Spock" || player2.gesture == "Paper")
+            else if (player1.gesture == "Spock" && player2.gesture == "Rock" || player1.gesture == "Spock" && player2.gesture == "Scissors")
             {
-                Console.WriteLine(player1.name + "wins this round");
-                player1.score++;
-            }
-            else if (player1.gesture == "Spock" && player2.gesture == "Rock" || player2.gesture == "Scissors")
-            {
-                Console.WriteLine(player1.name + " wins this round!");
+                Console.WriteLine("\n" + player1.name + " wins this round!");
                 player1.score++;
             }
             else
@@ -140,21 +141,25 @@ namespace RockPaperScissorsLizardSpock
                 player2.score++;
             }
             Console.ReadLine();
+            Console.Clear();
         }
 
         private void PlayAgain()
         {
+            Console.Clear();
             Console.WriteLine("\nWould you like to play again?(Type Y/N): ");
             string playAgain = Console.ReadLine();
             switch (playAgain)
             {
                 case "Y":
                 case "y":
+                    Console.Clear();
                     PlayGame newGame = new PlayGame();
                     newGame.SimulateProgram();
                     break;
                 case "N":
                 case "n":
+                    Console.Clear();
                     Console.WriteLine("\nThankyou for playing!");
                     Console.ReadLine();
                     break;
@@ -166,13 +171,15 @@ namespace RockPaperScissorsLizardSpock
             }
 
         }
+
         public void SimulateProgram()
         {
             DisplayRules();
             OneorTwoPlayers();
-
-            PickGestures();
-
+            do
+            {
+                PickGestures();
+            } while (player1.score < 2 && player2.score < 2);
             DisplayWinnerOfGame();
             PlayAgain();
         }

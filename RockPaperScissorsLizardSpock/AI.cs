@@ -22,7 +22,7 @@ namespace RockPaperScissorsLizardSpock
         }
         public override void PlayerGestureChoice()
         {
-            int aIChoice = new Random().Next(1, 5);
+            int aIChoice = new Random().Next();
         }
     }
 }
