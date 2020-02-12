@@ -25,6 +25,13 @@ namespace RockPaperScissorsLizardSpock
         }
         public override void PlayerGestureChoice()
         {
+            Console.WriteLine();
+            foreach (string gestures in gesturesList)
+            {
+                Console.WriteLine(gestures);
+            }
+            Console.WriteLine("\n");
+
             gesture = Console.ReadLine();
             switch (gesture)
             {

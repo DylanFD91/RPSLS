@@ -35,7 +35,8 @@ namespace RockPaperScissorsLizardSpock
         {
             Random rng = new Random();
             int index = rng.Next(gesturesList.Count);
-            gesture = index.ToString();
+            gesture = gesturesList[index];
+            Console.WriteLine(this.name + " went with " + gesturesList[index]);
         }
     }
 }

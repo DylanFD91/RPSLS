@@ -95,7 +95,7 @@ namespace RockPaperScissorsLizardSpock
             }
         }
 
-        private void DisplayGestureOptions()
+        public void DisplayGestureOptions()
         {
             Console.WriteLine("Please choose from the list: \n");
             foreach(string gesture in player1.gesturesList)
@@ -107,23 +107,24 @@ namespace RockPaperScissorsLizardSpock
 
         private void PickGestures()
         {
-            DisplayGestureOptions();
+            Console.WriteLine(player1.name + " please choose from the list: \n");
             player1.PlayerGestureChoice();
 
             Console.Clear();
 
-            DisplayGestureOptions();
+            Console.WriteLine(player2.name + " please choose from the list: \n");
             player2.PlayerGestureChoice();
+
             CompareGestures();
         }
 
-        public void CompareGestures()
+        private void CompareGestures()
         {
             if (player1.gesture == player2.gesture)
             {
                 Console.WriteLine("\nIt's a tie lets go again.");
             }
-            else if (player1.gesture == "Rock" && player2.gesture == "Scissors" || player1.gesture == "Rock" && player2.gesture == "Lizard")
+            else if ((player1.gesture == "Rock" && player2.gesture == "Scissors") || player1.gesture == "Rock" && player2.gesture == "Lizard")
             {
                 Console.WriteLine("\n" + player1.name + " wins this round!");
                 player1.score++;
@@ -150,7 +151,7 @@ namespace RockPaperScissorsLizardSpock
             }
             else
             {
-                Console.WriteLine(player2.name + " wins this round!");
+                Console.WriteLine("\n" + player2.name + " wins this round!");
                 player2.score++;
             }
             Console.ReadLine();
