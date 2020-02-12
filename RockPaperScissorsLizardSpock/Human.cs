@@ -64,6 +64,7 @@ namespace RockPaperScissorsLizardSpock
                     Console.WriteLine("\nThat was not a valid response please try again\n");
                     Console.ReadLine();
                     Console.Clear();
+                    Console.WriteLine(name + " please type one of the options below.");
                     PlayerGestureChoice();
                     break;
             }
